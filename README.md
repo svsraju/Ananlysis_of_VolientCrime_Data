@@ -54,7 +54,7 @@ MalePctDivorce and FemalePctDiv are highly correlated with TotPctDiv, so, these 
 The following Predictors are removed as they’re correlated with other variables: - PctLargHouseOccup, PersPerOccupHous, PersPerOwnOccHous, PersPerRentOccHous, MedYrHousBuilt, OwnOccHiQuart, OwnOccLowQuart, RentLowQ, RentHighQ, MedRent, PctSameHouse85 are removed.
 
 ---
-observations made from the above correlation plot
+Observations made from the above correlation plot
 ----------------
 1. age12t21 and age12t29 have correlation. This may be due to overlapping in data. So, we,ll make age12t29 to age21t29
 
@@ -75,7 +75,7 @@ observations made from the above correlation plot
 9. Also, other variables having correlation with ViolentCrimesPerPop are racepctblack, racepctwhite,pctWInvInc, pctWPubAsst,PctPopUnderPov, PctUnemployed,PctFam2Par, PersPerOwnOccHous, HousVacant.
 
 ---
-MOdelling
+Modelling
 --
 
 **I)	PLS**
