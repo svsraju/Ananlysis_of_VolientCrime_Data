@@ -1,0 +1,49 @@
+library(caret)
+library(AppliedPredictiveModeling)
+data(concrete,package="AppliedPredictiveModeling")
+?concrete
+str(concrete)
+
+
+fit <- train(CompressiveStrength~.*.,
+             data=concrete,
+             method="lasso")
+
+fit
+plot(fit)
+
+
+fitControl <- trainControl(method="repeatedcv",number=10,repeats=5)
+
+fit <- train(CompressiveStrength~.*.,
+             data=concrete,
+             method="lasso",
+             trControl=fitControl)
+fit
+
+lassoGrid <- expand.grid(fraction=seq(0.6,0.8,length=100))
+
+fit <- train(CompressiveStrength~.*.,
+             data=concrete,
+             method="lasso",
+             trControl=fitControl,
+             tuneGrid=lassoGrid)
+fit
+plot(fit)
+
+
+fitControl <- trainControl(method="cv",number=10)
+
+enetGrid <- expand.grid(lambda=seq(0,0.001,length=10),
+                        fraction=seq(0.1,0.9,length=30))
+
+
+fit <- train(CompressiveStrength~.*.,
+             data=concrete,
+             method="enet",
+             trControl=fitControl,
+             tuneGrid=enetGrid)
+fit
+plot(fit)
+
+

@@ -1,0 +1,86 @@
+library("pls")     #loading the plsr package for Partial Least Squares Regression
+library("car")     # loading car for geting vif
+library("DAAG")    # For Cross-Validataion
+library(corrplot)
+library("AppliedPredictiveModeling")
+library("e1071")   # to find skewness
+crimedata <- read.csv("crimeTrain.csv")
+
+head(crimedata)
+
+View(crimedata)
+
+
+crimedata <- crimedata[,2:119]
+crimedata
+View(crimedata)
+sum(is.na(crimedata$county))/1200  # checking the percentage of NA values in county variable
+library("ggplot2")
+ggplot(data = crimedata, aes(county,ViolentCrimesPerPop))+
+  geom_point()
+unique(crimedata$county)
+
+
+
+crimedata_new <- crimedata[,1:99]
+
+View(crimedata_new)
+
+sum(is.na(crimedata_new))
+
+
+
+crimedata_new <- cbind(crimedata_new,crimedata$LandArea,crimedata$PopDens,crimedata$PctUsePubTrans,crimedata$ViolentCrimesPerPop)
+View(crimedata_new)
+
+crimedata_new$communityname <- NULL
+
+crimedata_new$county <- NULL
+View(crimedata_new)
+
+crimedata_new$OtherPerCap[is.na(crimedata_new$OtherPerCap)] <- 0
+
+sum(is.na(crimedata_new))
+
+
+correlation <- cor(crimedata_new)
+corrplot(correlation, order = "hclust")
+sum(is.na(correlation))
+
+fit.all.ols <- lm(crimedata$ViolentCrimesPerPop~., data = crimedata_new)
+summary(fit.all.ols) # Adjusted R-square is 1, which is very much unlikely, must be due to overfitting. 
+AIC(fit.all.ols)
+
+ggplot(data = crimedata_new ,aes(blackPerCap,crimedata$ViolentCrimesPerPop))+
+  geom_point()
+
+ggplot(data = crimedata_new,aes(x =crimedata_new$whitePerCap, y = crimedata$ViolentCrimesPerPop))+
+  geom_point()
+cor(crimedata_new$whitePerCap,crimedata_new$blackPerCap)
+cor(crimedata_new$whitePerCap,crimedata_new$indianPerCap)
+cor(crimedata_new$whitePerCap,crimedata_new$AsianPerCap)
+
+cor(crimedata_new$PctEmplManu, crimedata_new$PctOccupManu)
+cor(crimedata_new$PctOccupMgmtProf, crimedata_new$PctOccupManu)
+cor(crimedata_new$PctTeen2Par,crimedata_new$PctKids2Par)
+cor(crimedata_new$PctTeen2Par,crimedata$ViolentCrimesPerPop)
+
+cor(crimedata_new$PctWorkMomYoungKids, crimedata_new$PctWorkMom)
+cor(crimedata$PctLargHouseFam,crimedata_new$PctLargHouseOccup)
+cor(crimedata$PctLargHouseFam,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$PctLargHouseOccup,crimedata$ViolentCrimesPerPop)
+
+
+cor(crimedata_new$MedOwnCostPctInc,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$MedOwnCostPctIncNoMtg,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$PersPerOccupHous,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$householdsize,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$householdsize,crimedata$PersPerOccupHous)
+
+cor(crimedata_new$MedOwnCostPctInc,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$MedOwnCostPctIncNoMtg,crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$NumStreet, crimedata$ViolentCrimesPerPop)
+
+cor(crimedata_new$NumInShelters, crimedata$ViolentCrimesPerPop)
+cor(crimedata_new$NumStreet, crimedata$NumInShelters)
+  

@@ -1,0 +1,96 @@
+#support vector regression
+
+library(e1071)
+
+# create data
+x <- seq(0.1, 5, by = 0.05)
+y <- log(x) + rnorm(x, sd = 0.2)
+
+# estimate model and predict input values
+m   <- svm(x, y)
+new <- predict(m, x)
+
+# visualize
+plot(x, y)
+points(x, log(x), col = 2)
+points(x, new, col = 4)
+
+
+
+
+library(mlbench)
+data("BostonHousing2")
+?BostonHousing2
+str(BostonHousing2)
+
+BH2<-BostonHousing2
+
+olsFit<-lm(cmedv~.-medv-town-tract-lon-lat-chas,data=BH2)  #OLS including the interaction term
+summary(olsFit)
+hist(olsFit$residuals)
+
+library(caret)
+
+ctrl <- trainControl(method="repeatedcv", number=5,   # 5 fold cross validation
+                     repeats=5)	
+
+ols.eval <- train(data=BH2, cmedv~.-medv-town-tract-lon-lat-chas,
+                  method = "lm",   #lm
+                  preProc = c("center","scale"),  # Center and scale data
+                  trControl=ctrl)
+
+ols.eval
+summary(ols.eval$finalModel)
+
+qplot(BH2$cmedv,ols.eval$finalModel$fitted.values)+
+      geom_abline(intercept=0,slope=1)
+
+
+#Train and Tune the SVM
+svm.tune <- train(data=BH2, 
+                  cmedv~.-medv-town-tract-lon-lat-chas,
+                  method = "svmRadial",   # Radial kernel
+                  tuneLength = 9,					# 9 values of the cost function
+                  preProc = c("center","scale"),  # Center and scale data
+                  trControl=ctrl)
+
+svm.tune
+
+grid <- expand.grid(sigma = seq(1.0,2.5,length=15),
+                    C = seq(3,9,length=15))
+
+svm.tune <- train(data=BH2, 
+                  cmedv~.-medv-town-tract-lon-lat-chas,
+                  method = "svmRadial", 
+                  preProc = c("center","scale"),
+                  tuneGrid = grid,
+                  trControl=ctrl)
+
+svm.tune
+
+plot(svm.tune)
+
+str(svm.tune$finalModel)
+
+str(BH2)
+X<-scale(BH2[,-c(1,2,3,4,5,6,10)])
+
+new <- predict(svm.tune$finalModel, X)
+qplot(BH2$cmedv,new)+
+  geom_abline(intercept=0,slope=1)
+
+
+grid2 <- expand.grid(C = seq(1,10,length=15))
+
+svm.tune2 <- train(data=BH2, 
+                  cmedv~.-medv-town-tract-lon-lat-chas,
+                  method = "svmLinear",   # linear kernel
+                  preProc = c("center","scale"),  # Center and scale data
+                  trControl=ctrl,
+                  tuneGrid = grid2)
+
+svm.tune2
+
+new <- predict(svm.tune2$finalModel, X)
+qplot(BH2$cmedv,new)+
+  geom_abline(intercept=0,slope=1)

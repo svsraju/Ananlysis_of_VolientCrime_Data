@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540698686274.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "893F3597",
+    "lastKnownWriteTime" : 7306916032621314048,
+    "last_content_update" : 1540698686274,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "211A5D09",
+        "caption" : "crimeTest",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=crimeTest&cache_key=211A5D09",
+        "displayedObservations" : "650",
+        "environment" : "",
+        "object" : "crimeTest",
+        "preview" : "0",
+        "totalObservations" : "650",
+        "variables" : "119"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

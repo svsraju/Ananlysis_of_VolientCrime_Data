@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540777306137.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "632612430",
+    "id" : "F6613D80",
+    "lastKnownWriteTime" : 1540788934,
+    "last_content_update" : 1540788934733,
+    "path" : "C:/Users/dvsnv/Desktop/Predictive Insights -29.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "374,49",
+        "scrollLine" : "350"
+    },
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

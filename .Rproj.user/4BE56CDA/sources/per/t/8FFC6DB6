@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540700746948.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2414051495",
+    "id" : "8FFC6DB6",
+    "lastKnownWriteTime" : 1540700744,
+    "last_content_update" : 1540700744,
+    "path" : "C:/Users/dvsnv/Downloads/caret.r",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "23,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

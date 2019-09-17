@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1540761698612.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4D291B3D",
+    "lastKnownWriteTime" : 3180141808686473843,
+    "last_content_update" : 1540761698612,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "3A249B4D",
+        "caption" : "crimeTrain1",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=crimeTrain1&cache_key=3A249B4D",
+        "displayedObservations" : 1200,
+        "environment" : "",
+        "object" : "crimeTrain1",
+        "preview" : 0,
+        "totalObservations" : 1200,
+        "variables" : 63
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
